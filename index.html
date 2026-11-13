@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
-<title>נס שצריך לספר בקול</title>
-<meta name="description" content="ילד בן ארבע חזר הביתה אחרי השתלה של חמישה איברים, 29 ניתוחים ו-476 ימים בבית החולים. אבא שלו, בן ציון כהן, מספר את הסיפור.">
+<title>A miracle that has to be told out loud · נס שצריך לספר בקול</title>
+<meta name="description" content="A four-year-old boy is home after a five-organ transplant and 476 days in the hospital. His father tells the story, in English or Hebrew.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://lavirafael.github.io/">
-<meta property="og:title" content="נס שצריך לספר בקול">
-<meta property="og:description" content="ילד בן ארבע חזר הביתה אחרי השתלה של חמישה איברים ו-476 ימים בבית החולים. אבא שלו מספר את הסיפור.">
+<meta property="og:title" content="A miracle that has to be told out loud · נס שצריך לספר בקול">
+<meta property="og:description" content="A four-year-old boy is home after a five-organ transplant and 476 days in the hospital. His father tells the story, in English or Hebrew.">
 <meta property="og:image" content="https://lavirafael.github.io/speaker.jpg">
 <meta property="og:image:width" content="1080">
 <meta property="og:image:height" content="1350">
@@ -533,7 +533,7 @@ figcaption{padding-top:.65rem;text-align:center;text-wrap:balance}
     var v=document.querySelectorAll('video');for(var i=0;i<v.length;i++){try{v[i].pause();}catch(e){}}
   }
   var first=fromHash();
-  if(!first){var n=(navigator.language||'').toLowerCase();first=(n.indexOf('he')===0||n.indexOf('iw')===0)?'he':'en';}
+  if(!first){first='en';}
   show(first);
   window.addEventListener('hashchange',function(){var l=fromHash();if(l){show(l);window.scrollTo(0,0);}});
   document.addEventListener('click',function(e){
