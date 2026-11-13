@@ -29,6 +29,11 @@
   --on-argaman-soft:#efdfe5;
   --line-on-argaman:#b47a8e;
   --veil:rgba(255,255,255,.12);
+  --yt:#ff0000;
+  --fb:#0866ff;
+  --tt:#111111;
+  --wa:#25d366;
+  --tile-shadow:rgba(27,23,29,.14);
   --he-book:"Frank Ruhl Libre","David Libre","David","Times New Roman",serif;
   --he-note:"Miriam Libre","Frank Ruhl Libre","Arial Hebrew",Arial,sans-serif;
   --en-book:"EB Garamond","Frank Ruhl Libre","Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
@@ -202,7 +207,7 @@ figcaption{padding-top:.65rem;text-align:center;text-wrap:balance}
 .colophon p[lang="he"]{font-family:var(--he-book);font-size:1.0625rem}
 
 /* Where the story was told: one quiet line at the head of the page, names only */
-.runhead .wrap{justify-content:space-between;align-items:baseline;flex-wrap:wrap;column-gap:1.25rem;row-gap:.25rem}
+.runhead .wrap{justify-content:flex-end;align-items:baseline;flex-wrap:wrap;column-gap:1.25rem;row-gap:.25rem}
 .seen{flex:1 1 16rem;min-width:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:.1rem .9rem;color:var(--ink-soft);line-height:1.5}
 #he .seen{font-size:1rem}
 #en .seen{font-size:1.0625rem}
@@ -213,17 +218,35 @@ figcaption{padding-top:.65rem;text-align:center;text-wrap:balance}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .switch{flex:none}
 
-/* His channels, in the colophon after the invitation */
-.follow{padding-bottom:.25rem}
-.follow .label{color:var(--on-argaman-soft);margin-bottom:.85rem}
-.follow ul{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem .75rem}
-.follow li{min-width:0}
-.follow a{display:inline-flex;align-items:baseline;gap:.4rem;min-height:2.75rem;padding:.55rem .95rem;border:1px solid var(--line-on-argaman);color:var(--on-argaman);text-decoration:none;line-height:1.3}
-.follow a:hover{border-color:var(--on-argaman);background:var(--veil)}
-.f-net{font-weight:700}
-#en .f-net{font-weight:600}
-.f-name{color:var(--on-argaman-soft);font-size:.95em}
-.colophon hr.tick{border-color:var(--line-on-argaman);margin:1.4rem auto 1.1rem}
+/* בס״ד: always in the top right corner, in both languages, the way a letter or a sefer opens */
+.runhead .bsd-row{display:flex;justify-content:flex-end;padding-top:.55rem}
+#he .runhead .bsd-row{justify-content:flex-start}
+.bsd{text-align:right;color:var(--ink-soft);font-family:var(--he-book);font-size:1rem;font-weight:700;line-height:1;letter-spacing:.02em}
+.bsd-row + .wrap{padding-top:.2rem}
+
+/* His channels: four tiles, each with the network's own mark and colour, after the invitation */
+.follow-band{background:var(--paper)}
+.follow-band .wrap{padding-top:2.5rem;padding-bottom:2.75rem;text-align:center}
+.follow-band hr.dbl{max-width:42rem;margin:0 auto 1.6rem}
+.follow-band .label{margin-bottom:1.25rem}
+#he .follow-band .label{font-size:1.0625rem}
+#en .follow-band .label{font-size:.9375rem}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;max-width:42rem;margin-inline:auto}
+.tiles li{min-width:0;display:flex}
+.tile{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:1.15rem .6rem 1.05rem;border:1px solid var(--rule);background:var(--paper);color:var(--ink);text-decoration:none;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.tile:hover{border-color:var(--argaman);box-shadow:0 10px 22px -12px var(--tile-shadow)}
+.ico{display:grid;place-items:center;width:3.6rem;height:3.6rem;border-radius:50%;margin-bottom:.2rem}
+.ico svg{display:block}
+.tile-youtube .ico{background:var(--yt)}
+.tile-facebook .ico{background:var(--fb)}
+.tile-tiktok .ico{background:var(--tt)}
+.tile-whatsapp .ico{background:var(--wa)}
+.f-net{font-weight:700;font-size:1.125rem;line-height:1.2}
+#en .f-net{font-weight:600;font-size:1.25rem}
+.f-name{color:var(--ink-soft);font-size:.95rem;line-height:1.3;overflow-wrap:anywhere}
+#en .f-name{font-size:1.0625rem}
+@media (min-width:40rem){ .tiles{grid-template-columns:repeat(4,minmax(0,1fr))} }
+@media (prefers-reduced-motion:no-preference){ .tile:hover{transform:translateY(-3px)} }
 
 @media (min-width:30rem){
   .shaar-body{padding:2.4rem 2rem 2.2rem}
@@ -276,8 +299,8 @@ figcaption{padding-top:.65rem;text-align:center;text-wrap:balance}
 <div id="en" lang="en" dir="ltr">
 
   <div class="runhead">
+    <div class="wrap bsd-row"><p class="bsd" lang="he" dir="rtl">בס״ד</p></div>
     <div class="wrap">
-      <p class="seen"><span class="label seen-label">As told on</span> <bdi class="seen-item">CBS News Miami</bdi><span class="sr"> · </span><bdi class="seen-item">Channel 14, Israel</bdi><span class="sr"> · </span><bdi class="seen-item">Channel 13, Israel</bdi><span class="sr"> · </span><bdi class="seen-item">Magen Avraham, Sunny Isles Beach</bdi></p>
       <a class="switch" href="#he" lang="he">עברית</a>
     </div>
   </div>
@@ -286,7 +309,7 @@ figcaption{padding-top:.65rem;text-align:center;text-wrap:balance}
     <div class="wrap spread spread-a">
       <div class="shaar">
         <div class="lintel">
-          <p class="motto">Mizmor l’todah. Shout for joy to Hashem, all the earth.</p>
+          <p class="motto">Mizmor l’todah, hari’u la’Hashem kol ha’aretz.</p>
           <p class="label ref">Tehillim 100:1</p>
         </div>
         <div class="shaar-body">
@@ -333,7 +356,7 @@ figcaption{padding-top:.65rem;text-align:center;text-wrap:balance}
     <div class="wrap spread spread-c">
       <blockquote class="gemara">
         <hr class="dbl" aria-hidden="true">
-        <p>Even if a sharp sword rests upon a person’s neck, he should not prevent himself from praying for mercy.</p>
+        <p>Afilu cherev chadah munachat al tzavaro shel adam, al yimna atzmo min harachamim.</p>
         <footer><cite class="label ref">Berakhot 10a</cite></footer>
       </blockquote>
       <figure class="plate">
@@ -375,7 +398,7 @@ figcaption{padding-top:.65rem;text-align:center;text-wrap:balance}
       </figure>
       <blockquote class="pasuk">
         <hr class="dbl" aria-hidden="true">
-        <p>For Hashem is good, His kindness is forever, and His faithfulness is for all generations.</p>
+        <p>Ki tov Hashem, l’olam chasdo, v’ad dor vador emunato.</p>
         <footer><cite class="label ref">Tehillim 100:5</cite></footer>
         <hr class="dbl flip" aria-hidden="true">
       </blockquote>
@@ -395,7 +418,7 @@ figcaption{padding-top:.65rem;text-align:center;text-wrap:balance}
           <button type="button" class="btn btn-ghost" data-copy="786-566-9477" data-tel="tel-en" data-done="Copied" id="copy-en">Copy the number</button>
         </div>
         <dl class="spec">
-          <div><dt class="label">Length</dt><dd>20 to 30 minutes</dd></div>
+          <div><dt class="label">Length</dt><dd>From a short d’var Torah to a full evening</dd></div>
           <div><dt class="label">Language</dt><dd>English or Hebrew</dd></div>
           <div><dt class="label">When</dt><dd>Melaveh malkah, a weeknight shiur, a Chanukah evening</dd></div>
         </dl>
@@ -403,18 +426,38 @@ figcaption{padding-top:.65rem;text-align:center;text-wrap:balance}
     </div>
   </section>
 
+
+  <nav class="follow-band" aria-labelledby="follow-en">
+    <div class="wrap">
+      <hr class="dbl" aria-hidden="true">
+      <h2 class="label" id="follow-en">Follow Lavi’s journey</h2>
+      <ul class="tiles">
+        <li><a class="tile tile-youtube" href="https://www.youtube.com/@LavisJourny" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" focusable="false"><path fill="#fff" d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81Z"/><path fill="#ff0000" d="M9.55 15.57V8.43L15.82 12l-6.27 3.57Z"/></svg></span>
+          <bdi class="f-net">YouTube</bdi>
+          <bdi class="f-name">Lavi’s Journey</bdi>
+        </a></li>
+        <li><a class="tile tile-facebook" href="https://www.facebook.com/benzi.clubers" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" focusable="false"><path fill="#fff" d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2c-2.72 0-4.58 1.66-4.58 4.7v2.62H6.61v3.56h3.07V22h3.68v-9.12h3.06l.46-3.56h-3.52V7.05c0-1.03.28-1.73 1.76-1.73Z"/></svg></span>
+          <bdi class="f-net">Facebook</bdi>
+          <bdi class="f-name">Benzi Cohen</bdi>
+        </a></li>
+        <li><a class="tile tile-tiktok" href="https://www.tiktok.com/@lavisjourney_dad" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" focusable="false"><path fill="#25f4ee" transform="translate(-0.9,-0.6)" d="M16.6 5.82a4.28 4.28 0 0 1-1.05-2.82h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 3.37-2.48V9.66a5.69 5.69 0 0 0-.79-.05A5.72 5.72 0 0 0 4.13 15.3a5.72 5.72 0 0 0 5.72 5.73 5.72 5.72 0 0 0 5.72-5.73V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.27-1.48Z"/><path fill="#fe2c55" transform="translate(0.9,0.6)" d="M16.6 5.82a4.28 4.28 0 0 1-1.05-2.82h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 3.37-2.48V9.66a5.69 5.69 0 0 0-.79-.05A5.72 5.72 0 0 0 4.13 15.3a5.72 5.72 0 0 0 5.72 5.73 5.72 5.72 0 0 0 5.72-5.73V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.27-1.48Z"/><path fill="#fff" d="M16.6 5.82a4.28 4.28 0 0 1-1.05-2.82h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 3.37-2.48V9.66a5.69 5.69 0 0 0-.79-.05A5.72 5.72 0 0 0 4.13 15.3a5.72 5.72 0 0 0 5.72 5.73 5.72 5.72 0 0 0 5.72-5.73V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.27-1.48Z"/></svg></span>
+          <bdi class="f-net">TikTok</bdi>
+          <bdi class="f-name">@lavisjourney_dad</bdi>
+        </a></li>
+        <li><a class="tile tile-whatsapp" href="https://chat.whatsapp.com/EO7k8VwijHz2f3fk7KikIK" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" focusable="false"><path fill="#fff" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 8.24 8.25c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48a.92.92 0 0 0-.66.31c-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29Z"/></svg></span>
+          <bdi class="f-net">WhatsApp</bdi>
+          <bdi class="f-name">Tehillim and updates</bdi>
+        </a></li>
+      </ul>
+    </div>
+  </nav>
+
   <footer class="colophon">
     <div class="wrap">
-      <nav class="follow" aria-labelledby="follow-en">
-        <h2 class="label" id="follow-en">Follow Lavi’s journey</h2>
-        <ul>
-          <li><a href="https://www.youtube.com/@LavisJourny" target="_blank" rel="noopener"><bdi class="f-net">YouTube</bdi> <bdi class="f-name">Lavi’s Journey</bdi></a></li>
-          <li><a href="https://www.facebook.com/benzi.clubers" target="_blank" rel="noopener"><bdi class="f-net">Facebook</bdi> <bdi class="f-name">Benzi Cohen</bdi></a></li>
-          <li><a href="https://www.tiktok.com/@lavisjourney_dad" target="_blank" rel="noopener"><bdi class="f-net">TikTok</bdi> <bdi class="f-name">@lavisjourney_dad</bdi></a></li>
-          <li><a href="https://chat.whatsapp.com/EO7k8VwijHz2f3fk7KikIK" target="_blank" rel="noopener"><bdi class="f-net">WhatsApp</bdi> <bdi class="f-name">Tehillim and updates</bdi></a></li>
-        </ul>
-      </nav>
-      <hr class="tick" aria-hidden="true">
       <p>L’refuah sheleimah: Lavi Refael ben Olga</p>
       <p lang="he" dir="rtl">לרפואה שלמה: לביא רפאל בן אולגה</p>
     </div>
@@ -425,8 +468,8 @@ figcaption{padding-top:.65rem;text-align:center;text-wrap:balance}
 <div id="he" lang="he" dir="rtl" hidden>
 
   <div class="runhead">
+    <div class="wrap bsd-row"><p class="bsd" lang="he" dir="rtl">בס״ד</p></div>
     <div class="wrap">
-      <p class="seen"><span class="label seen-label">הסיפור סופר ב-</span> <bdi class="seen-item">CBS News Miami</bdi><span class="sr"> · </span><bdi class="seen-item">ערוץ 14</bdi><span class="sr"> · </span><bdi class="seen-item">ערוץ 13</bdi><span class="sr"> · </span><bdi class="seen-item">בית הכנסת מגן אברהם</bdi></p>
       <a class="switch" href="#en" lang="en">English</a>
     </div>
   </div>
@@ -544,7 +587,7 @@ figcaption{padding-top:.65rem;text-align:center;text-wrap:balance}
           <button type="button" class="btn btn-ghost" data-copy="786-566-9477" data-tel="tel-he" data-done="הועתק" id="copy-he">העתקת המספר</button>
         </div>
         <dl class="spec">
-          <div><dt class="label">אורך</dt><dd>20 עד 30 דקות</dd></div>
+          <div><dt class="label">אורך</dt><dd>מדבר תורה קצר ועד ערב שלם</dd></div>
           <div><dt class="label">שפה</dt><dd>עברית או אנגלית</dd></div>
           <div><dt class="label">מתי</dt><dd>מלווה מלכה, שיעור באמצע השבוע, ערב בחנוכה</dd></div>
         </dl>
@@ -552,18 +595,38 @@ figcaption{padding-top:.65rem;text-align:center;text-wrap:balance}
     </div>
   </section>
 
+
+  <nav class="follow-band" aria-labelledby="follow-he">
+    <div class="wrap">
+      <hr class="dbl" aria-hidden="true">
+      <h2 class="label" id="follow-he">עקבו אחרי המסע של לביא</h2>
+      <ul class="tiles">
+        <li><a class="tile tile-youtube" href="https://www.youtube.com/@LavisJourny" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" focusable="false"><path fill="#fff" d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81Z"/><path fill="#ff0000" d="M9.55 15.57V8.43L15.82 12l-6.27 3.57Z"/></svg></span>
+          <bdi class="f-net">יוטיוב</bdi>
+          <bdi class="f-name">המסע של לביא רפאל</bdi>
+        </a></li>
+        <li><a class="tile tile-facebook" href="https://www.facebook.com/benzi.clubers" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" focusable="false"><path fill="#fff" d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2c-2.72 0-4.58 1.66-4.58 4.7v2.62H6.61v3.56h3.07V22h3.68v-9.12h3.06l.46-3.56h-3.52V7.05c0-1.03.28-1.73 1.76-1.73Z"/></svg></span>
+          <bdi class="f-net">פייסבוק</bdi>
+          <bdi class="f-name">בנצי כהן</bdi>
+        </a></li>
+        <li><a class="tile tile-tiktok" href="https://www.tiktok.com/@lavisjourney_dad" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" focusable="false"><path fill="#25f4ee" transform="translate(-0.9,-0.6)" d="M16.6 5.82a4.28 4.28 0 0 1-1.05-2.82h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 3.37-2.48V9.66a5.69 5.69 0 0 0-.79-.05A5.72 5.72 0 0 0 4.13 15.3a5.72 5.72 0 0 0 5.72 5.73 5.72 5.72 0 0 0 5.72-5.73V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.27-1.48Z"/><path fill="#fe2c55" transform="translate(0.9,0.6)" d="M16.6 5.82a4.28 4.28 0 0 1-1.05-2.82h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 3.37-2.48V9.66a5.69 5.69 0 0 0-.79-.05A5.72 5.72 0 0 0 4.13 15.3a5.72 5.72 0 0 0 5.72 5.73 5.72 5.72 0 0 0 5.72-5.73V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.27-1.48Z"/><path fill="#fff" d="M16.6 5.82a4.28 4.28 0 0 1-1.05-2.82h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 3.37-2.48V9.66a5.69 5.69 0 0 0-.79-.05A5.72 5.72 0 0 0 4.13 15.3a5.72 5.72 0 0 0 5.72 5.73 5.72 5.72 0 0 0 5.72-5.73V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.27-1.48Z"/></svg></span>
+          <bdi class="f-net">טיקטוק</bdi>
+          <bdi class="f-name">@lavisjourney_dad</bdi>
+        </a></li>
+        <li><a class="tile tile-whatsapp" href="https://chat.whatsapp.com/EO7k8VwijHz2f3fk7KikIK" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" focusable="false"><path fill="#fff" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 8.24 8.25c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48a.92.92 0 0 0-.66.31c-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29Z"/></svg></span>
+          <bdi class="f-net">וואטסאפ</bdi>
+          <bdi class="f-name">קבוצת תהילים ועדכונים</bdi>
+        </a></li>
+      </ul>
+    </div>
+  </nav>
+
   <footer class="colophon">
     <div class="wrap">
-      <nav class="follow" aria-labelledby="follow-he">
-        <h2 class="label" id="follow-he">עקבו אחרי המסע של לביא</h2>
-        <ul>
-          <li><a href="https://www.youtube.com/@LavisJourny" target="_blank" rel="noopener"><bdi class="f-net">יוטיוב</bdi> <bdi class="f-name">המסע של לביא רפאל</bdi></a></li>
-          <li><a href="https://www.facebook.com/benzi.clubers" target="_blank" rel="noopener"><bdi class="f-net">פייסבוק</bdi> <bdi class="f-name">בנצי כהן</bdi></a></li>
-          <li><a href="https://www.tiktok.com/@lavisjourney_dad" target="_blank" rel="noopener"><bdi class="f-net">טיקטוק</bdi> <bdi class="f-name">@lavisjourney_dad</bdi></a></li>
-          <li><a href="https://chat.whatsapp.com/EO7k8VwijHz2f3fk7KikIK" target="_blank" rel="noopener"><bdi class="f-net">וואטסאפ</bdi> <bdi class="f-name">קבוצת תהילים ועדכונים</bdi></a></li>
-        </ul>
-      </nav>
-      <hr class="tick" aria-hidden="true">
       <p>לרפואה שלמה: לביא רפאל בן אולגה</p>
     </div>
   </footer>
