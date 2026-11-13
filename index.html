@@ -201,6 +201,30 @@ figcaption{padding-top:.65rem;text-align:center;text-wrap:balance}
 #en .colophon p{font-size:1.1875rem}
 .colophon p[lang="he"]{font-family:var(--he-book);font-size:1.0625rem}
 
+/* Where the story was told: one quiet line at the head of the page, names only */
+.runhead .wrap{justify-content:space-between;align-items:baseline;flex-wrap:wrap;column-gap:1.25rem;row-gap:.25rem}
+.seen{flex:1 1 16rem;min-width:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:.1rem .9rem;color:var(--ink-soft);line-height:1.5}
+#he .seen{font-size:1rem}
+#en .seen{font-size:1.0625rem}
+#en .seen-label{font-size:.8125rem}
+.seen-item{color:var(--ink);font-weight:600;white-space:nowrap}
+#en .seen-item{font-weight:500}
+/* The separators are for screen readers only; on screen the gap separates the names. */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.switch{flex:none}
+
+/* His channels, in the colophon after the invitation */
+.follow{padding-bottom:.25rem}
+.follow .label{color:var(--on-argaman-soft);margin-bottom:.85rem}
+.follow ul{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem .75rem}
+.follow li{min-width:0}
+.follow a{display:inline-flex;align-items:baseline;gap:.4rem;min-height:2.75rem;padding:.55rem .95rem;border:1px solid var(--line-on-argaman);color:var(--on-argaman);text-decoration:none;line-height:1.3}
+.follow a:hover{border-color:var(--on-argaman);background:var(--veil)}
+.f-net{font-weight:700}
+#en .f-net{font-weight:600}
+.f-name{color:var(--on-argaman-soft);font-size:.95em}
+.colophon hr.tick{border-color:var(--line-on-argaman);margin:1.4rem auto 1.1rem}
+
 @media (min-width:30rem){
   .shaar-body{padding:2.4rem 2rem 2.2rem}
   .actions{flex-direction:row;justify-content:center}
@@ -253,6 +277,7 @@ figcaption{padding-top:.65rem;text-align:center;text-wrap:balance}
 
   <div class="runhead">
     <div class="wrap">
+      <p class="seen"><span class="label seen-label">As told on</span> <bdi class="seen-item">CBS News Miami</bdi><span class="sr"> · </span><bdi class="seen-item">Channel 14, Israel</bdi><span class="sr"> · </span><bdi class="seen-item">Channel 13, Israel</bdi><span class="sr"> · </span><bdi class="seen-item">Magen Avraham, Sunny Isles Beach</bdi></p>
       <a class="switch" href="#he" lang="he">עברית</a>
     </div>
   </div>
@@ -380,6 +405,16 @@ figcaption{padding-top:.65rem;text-align:center;text-wrap:balance}
 
   <footer class="colophon">
     <div class="wrap">
+      <nav class="follow" aria-labelledby="follow-en">
+        <h2 class="label" id="follow-en">Follow Lavi’s journey</h2>
+        <ul>
+          <li><a href="https://www.youtube.com/@LavisJourny" target="_blank" rel="noopener"><bdi class="f-net">YouTube</bdi> <bdi class="f-name">Lavi’s Journey</bdi></a></li>
+          <li><a href="https://www.facebook.com/benzi.clubers" target="_blank" rel="noopener"><bdi class="f-net">Facebook</bdi> <bdi class="f-name">Benzi Cohen</bdi></a></li>
+          <li><a href="https://www.tiktok.com/@lavisjourney_dad" target="_blank" rel="noopener"><bdi class="f-net">TikTok</bdi> <bdi class="f-name">@lavisjourney_dad</bdi></a></li>
+          <li><a href="https://chat.whatsapp.com/EO7k8VwijHz2f3fk7KikIK" target="_blank" rel="noopener"><bdi class="f-net">WhatsApp</bdi> <bdi class="f-name">Tehillim and updates</bdi></a></li>
+        </ul>
+      </nav>
+      <hr class="tick" aria-hidden="true">
       <p>L’refuah sheleimah: Lavi Refael ben Olga</p>
       <p lang="he" dir="rtl">לרפואה שלמה: לביא רפאל בן אולגה</p>
     </div>
@@ -391,6 +426,7 @@ figcaption{padding-top:.65rem;text-align:center;text-wrap:balance}
 
   <div class="runhead">
     <div class="wrap">
+      <p class="seen"><span class="label seen-label">הסיפור סופר ב-</span> <bdi class="seen-item">CBS News Miami</bdi><span class="sr"> · </span><bdi class="seen-item">ערוץ 14</bdi><span class="sr"> · </span><bdi class="seen-item">ערוץ 13</bdi><span class="sr"> · </span><bdi class="seen-item">בית הכנסת מגן אברהם</bdi></p>
       <a class="switch" href="#en" lang="en">English</a>
     </div>
   </div>
@@ -518,6 +554,16 @@ figcaption{padding-top:.65rem;text-align:center;text-wrap:balance}
 
   <footer class="colophon">
     <div class="wrap">
+      <nav class="follow" aria-labelledby="follow-he">
+        <h2 class="label" id="follow-he">עקבו אחרי המסע של לביא</h2>
+        <ul>
+          <li><a href="https://www.youtube.com/@LavisJourny" target="_blank" rel="noopener"><bdi class="f-net">יוטיוב</bdi> <bdi class="f-name">המסע של לביא רפאל</bdi></a></li>
+          <li><a href="https://www.facebook.com/benzi.clubers" target="_blank" rel="noopener"><bdi class="f-net">פייסבוק</bdi> <bdi class="f-name">בנצי כהן</bdi></a></li>
+          <li><a href="https://www.tiktok.com/@lavisjourney_dad" target="_blank" rel="noopener"><bdi class="f-net">טיקטוק</bdi> <bdi class="f-name">@lavisjourney_dad</bdi></a></li>
+          <li><a href="https://chat.whatsapp.com/EO7k8VwijHz2f3fk7KikIK" target="_blank" rel="noopener"><bdi class="f-net">וואטסאפ</bdi> <bdi class="f-name">קבוצת תהילים ועדכונים</bdi></a></li>
+        </ul>
+      </nav>
+      <hr class="tick" aria-hidden="true">
       <p>לרפואה שלמה: לביא רפאל בן אולגה</p>
     </div>
   </footer>
