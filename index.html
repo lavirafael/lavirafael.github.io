@@ -212,7 +212,7 @@ h1{font-family:var(--display);font-weight:900;color:var(--ink);line-height:.92;l
         <p class="sub">What the father said there, for anyone still waiting: Yeshuat Hashem k’heref ayin.</p>
       </div>
       <div class="film">
-        <video id="film-en" muted playsinline loop preload="none" poster="poster45-en.jpg" src="talk45-en.mp4" width="720" height="900"></video>
+        <video id="film-en" muted playsinline loop controls controlslist="nodownload" preload="none" poster="poster45-en.jpg" src="talk45-en.mp4" width="720" height="900"></video>
         <button type="button" class="sound" data-sound="film-en" data-on="Tap for sound" data-off="Mute" aria-pressed="false" aria-controls="film-en">Tap for sound</button>
         <button type="button" class="play" data-play="film-en" hidden>Watch</button>
       </div>
@@ -321,7 +321,7 @@ h1{font-family:var(--display);font-weight:900;color:var(--ink);line-height:.92;l
         <p class="sub">מה שהאבא אמר שם, לכל מי שעוד מחכה: ישועת ה׳ כהרף עין.</p>
       </div>
       <div class="film">
-        <video id="film-he" muted playsinline loop preload="none" poster="poster45-he.jpg" src="talk45-he.mp4" width="720" height="900"></video>
+        <video id="film-he" muted playsinline loop controls controlslist="nodownload" preload="none" poster="poster45-he.jpg" src="talk45-he.mp4" width="720" height="900"></video>
         <button type="button" class="sound" data-sound="film-he" data-on="להפעלת הקול" data-off="להשתקה" aria-pressed="false" aria-controls="film-he">להפעלת הקול</button>
         <button type="button" class="play" data-play="film-he" hidden>לצפייה</button>
       </div>
@@ -470,6 +470,13 @@ h1{font-family:var(--display);font-weight:900;color:var(--ink);line-height:.92;l
   var films=document.querySelectorAll('video');
   for(var f=0;f<films.length;f++){
     films[f].addEventListener('playing',function(e){var b=playBtn(e.target);if(b){b.hidden=true;}});
+    // 15.11.2026: the film now has the phone's own player too; when the sound is turned on or off there, the big button follows
+    films[f].addEventListener('volumechange',function(e){
+      var v=e.target,b=document.querySelector('[data-sound="'+v.id+'"]');if(!b){return;}
+      var on=!v.muted&&v.volume>0;
+      b.setAttribute('aria-pressed',on?'true':'false');b.textContent=b.getAttribute(on?'data-off':'data-on');
+      if(on){b.setAttribute('data-started','1');}
+    });
   }
   // A silent film that scrolls out of sight rests, and picks up again when it comes back.
   if('IntersectionObserver' in window){
@@ -495,7 +502,8 @@ h1{font-family:var(--display);font-weight:900;color:var(--ink);line-height:.92;l
     var s=e.target.closest('[data-sound]');
     if(s){sound(s);return;}
     var p=e.target.closest('[data-play]');
-    if(p){var pv=document.getElementById(p.getAttribute('data-play'));if(pv){p.hidden=true;run(pv);}return;}
+    // 15.11.2026, his words: "the video does not work... I do not hear any sound". Whoever taps "watch" wants to hear it.
+    if(p){var pv=document.getElementById(p.getAttribute('data-play'));if(pv){p.hidden=true;var sb=document.querySelector('[data-sound="'+pv.id+'"]');if(sb&&sb.getAttribute('aria-pressed')!=='true'){sound(sb);}else{run(pv);}}return;}
     var c=e.target.closest('[data-copy]');
     if(c){
       var label=c.textContent,done=c.getAttribute('data-done');
